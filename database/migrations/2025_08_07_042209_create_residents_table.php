@@ -13,9 +13,9 @@ return new class extends Migration
     {
         Schema::create('residents', function (Blueprint $table) {
             $table->id();
-            $table->string('nik, 16');
-            $table->string('name, 100');
-            $table->enum('gender', ['male, female']);
+            $table->string('nik', 16);
+            $table->string('name', 100);
+            $table->enum('gender', ['male', 'female']);
             $table->date('birth_date');
             $table->string('birth_place', 100);
             $table->text('address');
