@@ -25,11 +25,12 @@ class ResidentController extends Controller
 
             public function store(Request $request)
             {
-                $validated = $request->validate([
+                $validateData = $request->validate([
                     'nik' => ['required', 'min:16', 'max:16'],
                     'name' => ['required',  'max:100'],
                     'gender' => ['required',Rule::in(['male', 'female'])],
                     'birth_date' => ['required', 'max:100'],
+                    'birth_place' => ['required', 'max:100'],
                     'address' => ['required', 'max:700'],
                     'religion' => ['nullable', 'max:100'],
                     'marital_status' => ['required',Rule::in(['single', 'married', 'divorce'])],
@@ -38,7 +39,7 @@ class ResidentController extends Controller
                     'status' => ['required',Rule::in(['active', 'moved', 'deceased'])],
 
                 ]);
-                Resident::create($request->validate());
+                Resident::create($validateData);
                 return redirect('/resident')->with('Success', 'Berhasil menambahkan data');
             }
             public function edit($id)
