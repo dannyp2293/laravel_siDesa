@@ -63,15 +63,15 @@
                         </div>
                         <div class="from-group mb-3">
                             <label for="occupation">Pekerjaan</label>
-                            <input type="text" name="occupation" id="occupation" class="form-control">
+                            <input type="text" name="occupation" id="occupation" class="form-control @error('occupation') is-invalid @enderror">
                         </div>
                         <div class="from-group mb-3">
                             <label for="phone">Telepon</label>
-                            <input type="text" name="phone" id="phone" class="form-control">
+                            <input type="text" name="phone" id="phone" class="form-control @error('phone') is-invalid @enderror">
                         </div>
                         <div class="from-group mb-3">
                             <label for="status">Status </label>
-                            <select name="status" id="status" class="form-control">
+                            <select name="status" id="status" class="form-control @error('status') is-invalid @enderror">
                                 <option value="active">Aktif </option>
                                 <option value="moved">Pindah </option>
                                 <option value="deceased">Alkamrum </option>
