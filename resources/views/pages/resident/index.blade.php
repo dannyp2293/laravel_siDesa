@@ -54,12 +54,16 @@
         <td>{{ $item->status }} </td>
         <td>
             <div class="d-flex">
-                <a href ="/resident/{{ $item->id }}"
+                <a href ="/resident/{{ $item->id . '/edit' }}"
                     class="d-inline-block mr-2 btn btn-sm btn-warning">
                     <i class="fas fa-pen"></i>
+                    {{-- <a href="{{ url('/resident/' . $item->id . '/edit') }}" class="btn btn-sm btn-warning">Edit</a> --}}
                 </a>
+
                 <a href ="/resident/{{ $item->id }}" class="btn btn-sm btn-danger">
                     <i class="fas fa-eraser"></i>
+
+
                 </a>
             </div>
                                         </td>

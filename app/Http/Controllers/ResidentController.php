@@ -50,10 +50,10 @@ class ResidentController extends Controller
             }
             public function update(Request $request, $id)
             {
-             $validated = $request->validate([
+             $validateData = $request->validate([
                     'nik' => ['required', 'min:16', 'max:16'],
                     'name' => ['required',  'max:100'],
-                    'gender' => ['require',Rule::in(['male', 'female'])],
+                    'gender' => ['required',Rule::in(['male', 'female'])],
                     'birth_date' => ['required', 'max:100'],
                     'address' => ['required', 'max:700'],
                     'religion' => ['nullable', 'max:100'],
@@ -63,7 +63,7 @@ class ResidentController extends Controller
                        'status' => ['required',Rule::in(['active', 'moved', 'deceased'])],
 
                 ]);
-                Resident::findOrFail($id)->update($request->validate());
+                Resident::findOrFail($id)->update($validateData);
                 return redirect('/resident')->with('Succes', 'Berhasil mengubah data');
             }
 

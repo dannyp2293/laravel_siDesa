@@ -3,22 +3,22 @@
 @section('content')
     <!-- Page Heading -->
     <div class="d-sm-flex align-items-center justify-content-between mb-4">
-        <h1 class="h3 mb-0 text-gray-800">Tambah Penduduk</h1>
+        <h1 class="h3 mb-0 text-gray-800">Ubah Penduduk</h1>
     </div>
     {{-- @if ($errors->any())
     @dd($errors->all())
     @endif --}}
     <div class="row">
         <div class="col">
-            <form action="/resident" method="post">
+            <form action="/resident/{{$resident->id}}" method="post">
                 @csrf
-                @method('POST')
+                @method('PUT')
 <div class="card">
 <div class="card-body">
     <div class="from-group mb-3">
         <label for="nik">NIK</label>
         <input type="number" inputmode="numeric" name="nik" id="nik"
-            class="form-control @error('nik') is-invalid @enderror" value="{{ old('nik') }}">
+            class="form-control @error('nik') is-invalid @enderror" value="{{ old('nik', $resident->nik) }}">
         @error('nik')
             <span class="invalid-feedback">
                 {{ $message }}
@@ -28,7 +28,7 @@
     <div class="from-group mb-3">
         <label for="name">Nama lengkap</label>
         <input type="text" name="name" id="name"
-            class="form-control @error('name') is-invalid @enderror" value="{{ old('name') }}">
+            class="form-control @error('name') is-invalid @enderror" value="{{ old('name',$resident->name ) }}">
         @error('name')
             <span class="invalid-feedback">
                 {{ $message }}
@@ -55,7 +55,7 @@
             @endforeach
             <option value="female">Perempuan </option> --}}
             @foreach (['male' => 'Laki-laki', 'female' => 'Perempuan'] as $value => $label)
-                <option value="{{ $value }}" @selected(old('gender') == $value)>
+                <option value="{{ $value }}" @selected(old('gender', $resident->gender) == $value)>
                     {{ $label }}
                 </option>
             @endforeach
@@ -69,7 +69,7 @@
     <div class="from-group mb-3">
         <label for="birth_date">Tanggal Lahir</label>
         <input type="date" name="birth_date" id="birth_date"
-            class="form-control @error('birth_date') is-invalid @enderror" value="{{ old('birth_date') }}">
+            class="form-control @error('birth_date') is-invalid @enderror" value="{{ old('birth_date', $resident->birth_date) }}">
         @error('birth_date')
             <span class="invalid-feedback">
                 {{ $message }}
@@ -79,7 +79,7 @@
     <div class="from-group mb-3">
         <label for="birth_place">Tempat Lahir</label>
         <input type="text" name="birth_place" id="birth_place"
-            class="form-control @error('birth_place') is-invalid @enderror" value="{{ old('birth_place') }}">
+            class="form-control @error('birth_place') is-invalid @enderror" value="{{ old('birth_place', $resident->birth_place) }}">
         @error('birth_place')
             <span class="invalid-feedback">
                 {{ $message }}
@@ -89,7 +89,7 @@
     <div class="from-group mb-3">
         <label for="address">Alamat</label>
         <textarea name="address" id="address" cols="30" rows="10"
-            class="form-control @error('address') is-invalid @enderror">{{ old('address') }}</textarea>
+            class="form-control @error('address') is-invalid @enderror">{{ old('address', $resident->address) }}</textarea>
         @error('address')
             <span class="invalid-feedback">
                 {{ $message }}
@@ -99,7 +99,7 @@
     <div class="from-group mb-3">
         <label for="religion">Agama</label>
         <input type="text" name="religion" id="religion"
-            class="form-control @error('religion') is-invalid @enderror" value="{{ old('religion') }}">
+            class="form-control @error('religion') is-invalid @enderror" value="{{ old('religion', $resident->religion) }}">
         @error('religion')
             <span class="invalid-feedback">
                 {{ $message }}
@@ -116,7 +116,7 @@
              'divorce' => 'Bercerai',
              'widow' => 'Janda/Duda',
              ] as $value => $label)
-                <option value="{{ $value }}" @selected(old('marital_status') == $value)>
+                <option value="{{ $value }}" @selected(old('marital_status', $resident->martital_status) == $value)>
                     {{ $label }}
                 </option>
             @endforeach
@@ -130,7 +130,7 @@
     <div class="from-group mb-3">
         <label for="occupation">Pekerjaan</label>
         <input type="text" name="occupation" id="occupation"
-            class="form-control @error('occupation') is-invalid @enderror" value="{{ old('occupation') }}">
+            class="form-control @error('occupation') is-invalid @enderror" value="{{ old('occupation', $resident->occupation) }}">
         @error('occupation')
             <span class="invalid-feedback">
                 {{ $message }}
@@ -140,7 +140,7 @@
     <div class="from-group mb-3">
         <label for="phone">Telepon</label>
         <input type="text" name="phone" id="phone"
-            class="form-control @error('phone') is-invalid @enderror" value="{{ old('phone') }}">
+            class="form-control @error('phone') is-invalid @enderror" value="{{ old('phone',$resident->phone) }}">
         @error('phone')
             <span class="invalid-feedback">
                 {{ $message }}
@@ -156,7 +156,7 @@
              'moved' => 'Pindah',
              'deceased' => 'Almalhum',
              ] as $value => $label)
-                <option value="{{ $value }}" @selected(old('status') == $value)>
+                <option value="{{ $value }}" @selected(old('status', $resident->status) == $value)>
                     {{ $label }}
                 </option>
 @endforeach
@@ -173,8 +173,8 @@
         <a href="/resident" class="btn btn-outline-secondary">
             Kembali
         </a>
-        <button type="submit" class="btn btn-primary">
-            Simpan
+        <button type="submit" class="btn btn-warning">
+            Simpan Perubahan
         </button>
                         </div>
                     </div>
