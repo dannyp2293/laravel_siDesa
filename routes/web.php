@@ -18,3 +18,4 @@ Route::post('/resident', [ResidentController::class, 'store']);
 Route::get('/resident/{id}/edit', [ResidentController::class, 'edit']);
 Route::put('/resident/{id}', [ResidentController::class, 'update']);
 Route::delete('/resident/{id}', [ResidentController::class, 'destroy']);
+Route::resource('resident', ResidentController::class);

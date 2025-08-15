@@ -6,6 +6,7 @@ use App\Models\Resident;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
 
+
 class ResidentController extends Controller
 {
     public function index()
@@ -71,7 +72,8 @@ class ResidentController extends Controller
             {
                 $resident = Resident::findOrFail($id);
                 $resident->delete();
-                return redirect('/resident')->with('succes', 'berhasil menghapus data');
+                // return redirect('/resident')->with('succes', 'berhasil menghapus data');
+                return redirect()->route('resident.index')->with('success', 'Data berhasil dihapus.');
 
             }
     }
