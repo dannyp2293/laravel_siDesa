@@ -23,7 +23,9 @@
 </head>
 
 <body class="bg-gradient-primary">
-
+    {{-- @if($errors->any())
+    dd($errors-all())
+    @endif --}}
     <div class="container">
 
         <!-- Outer Row -->
@@ -46,11 +48,11 @@
         @method('POST')
         <div class="form-group">
             <input type="email" class="form-control form-control-user"
-                id="inputEmail" aria-describedby="emailHelp"
+                id="inputEmail"  name="email" aria-describedby="emailHelp"
                 placeholder="Enter Email Address...">
         </div>
         <div class="form-group">
-            <input type="password" class="form-control form-control-user"
+            <input type="password" name="password" class="form-control form-control-user"
                 id="inputPassword" placeholder="Password">
 
 
