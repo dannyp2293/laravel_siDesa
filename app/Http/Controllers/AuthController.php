@@ -19,18 +19,18 @@ class AuthController extends Controller
             'password' => ['required'],
         ]);
 
- 
+
         if (Auth::attempt($credentials)) {
             $request->session()->regenerate();
-    
+
             dd(Auth::user());
- 
+
             return redirect()->intended('dashboard');
         }
- 
+
         return back()->withErrors([
             'email' => 'Terjadi kesalahan periksa kemabali email atau password anda.',
         ])->onlyInput('email');
-    
+
     }
 }

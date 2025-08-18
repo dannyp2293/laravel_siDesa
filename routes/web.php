@@ -9,6 +9,7 @@ Route::get('/', function () {
 });
 //Auth
 Route::get('/', [AuthController::class, 'login']);
+Route::post ('/login', [AuthController::class, 'authenticate']);
 
 Route::get('/dashboard', function(){
     return view('pages.dashboard');
