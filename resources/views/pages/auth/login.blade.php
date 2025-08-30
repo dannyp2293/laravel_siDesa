@@ -61,6 +61,22 @@
             Login
         </button>
     <hr>
+    </form>
+ {{-- <form class="user" action="{{ route('login.authenticate') }}" method="POST">
+    @csrf
+    <div class="form-group">
+        <input type="email" class="form-control form-control-user"
+            name="email" placeholder="Enter Email Address..." required>
+    </div>
+    <div class="form-group">
+        <input type="password" name="password" class="form-control form-control-user"
+            placeholder="Password" required>
+    </div>
+    <button type="submit" class="btn btn-primary btn-user btn-block">
+        Login
+    </button>
+</form> --}}
+
 
     <div class="text-center">
         <a class="small" href="/">Create an Account!</a>
