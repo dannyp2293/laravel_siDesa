@@ -8,13 +8,12 @@ use Illuminate\Support\Facades\Route;
 //     return view('layouts.app');
 // });
 //Auth
+
 Route::get('/', [AuthController::class, 'login']);
-Route::get('/', [AuthController::class, 'login'])->name('login');
-// Route::post('/login', [AuthController::class, 'authenticate'])->name('login.authenticate');
-// Route::post('/logout', [AuthController::class, 'authenticate'])->name('logout');
-// Route::get('/', [AuthController::class, 'login']);
 Route::post('/login', [AuthController::class, 'authenticate']);
 Route::post('/logout', [AuthController::class, 'logout']);
+Route::get('/register', [AuthController::class, 'registerview']);
+Route::post('/register', [AuthController::class, 'register']);
 
 
 Route::get('/dashboard', function () {

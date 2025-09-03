@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 
 class AuthController extends Controller
 {
@@ -43,6 +44,24 @@ class AuthController extends Controller
         ])->onlyInput('email');
 
     }
+    public function  registerView()
+    {
+        return view('pages.auth.register');
+    }
+    public function register(Request $request)
+    {
+$validated = $request->validated([
+        'name' => ['required'],
+        'email' => ['required', 'email'],
+        'password' => ['required'],
+    ]);
+
+    $user = New User();
+    $user->name = $request->input('name');
+    $user->email = $request->input('email');
+    $user->password = Hash::make($request->input('password'));
+    }
+
     public function logout(Request $request)
 {
 
