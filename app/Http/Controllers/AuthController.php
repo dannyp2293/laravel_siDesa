@@ -1,7 +1,8 @@
 <?php
 
 namespace App\Http\Controllers;
-
+ 
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
@@ -60,7 +61,12 @@ $validated = $request->validated([
     $user->name = $request->input('name');
     $user->email = $request->input('email');
     $user->password = Hash::make($request->input('password'));
+    $user->role_id=2;
+    $user->saveOrFail();
+
+    return redirect('/')->with('Berhasil, mendaftarkan akun, menunggu');
     }
+    
 
     public function logout(Request $request)
 {

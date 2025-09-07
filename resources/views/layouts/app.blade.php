@@ -84,7 +84,7 @@
                         <span aria-hidden="true">×</span>
                     </button>
                 </div>
-                 <div class="modal-body">pakah anda yakin akan keluar dari aplikasi.</div>
+                 <div class="modal-body">apakah anda yakin akan keluar dari aplikasi.</div>
                 <div class="modal-footer">
                     <button type="button"  class="btn btn-secondary" type="button" data-dismiss="modal">Kembali</button>
                     <button type="submit" class="btn btn-primary" >Logout</a>
