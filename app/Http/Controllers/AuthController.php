@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
- 
+
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -11,11 +11,17 @@ class AuthController extends Controller
 {
     public function login()
         {
+            if (Auth::check()){  //fungsi ini mencegah user tidak bisa masuk ke halaman ini lgi ketika sudah login
+                return back();
+            }
             return view('pages.auth.login');
         }
     public function authenticate(Request $request)
     {
 
+         if (Auth::check()){
+                return back();
+            }
         $credentials = $request->validate([
             'email' => ['required', 'email'],
             'password' => ['required'],
@@ -47,11 +53,14 @@ class AuthController extends Controller
     }
     public function  registerView()
     {
+         if (Auth::check()){
+                return back();
+            }
         return view('pages.auth.register');
     }
     public function register(Request $request)
     {
-$validated = $request->validated([
+$validated = $request->validate([
         'name' => ['required'],
         'email' => ['required', 'email'],
         'password' => ['required'],
@@ -64,13 +73,16 @@ $validated = $request->validated([
     $user->role_id=2;
     $user->saveOrFail();
 
-    return redirect('/')->with('Berhasil, mendaftarkan akun, menunggu');
+    return redirect('/')->with('Berhasil, mendaftarkan akun, menunggu persetujuan admin');
     }
-    
+
 
     public function logout(Request $request)
 {
 
+     if (!Auth::check()){  //ini kalau belom login  akan diarahkan ke dalam halaman login
+                return redirect('/');
+            }
     Auth::logout();
 
     $request->session()->invalidate();

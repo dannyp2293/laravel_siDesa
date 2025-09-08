@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\Route;
 //Auth
 
 Route::get('/', [AuthController::class, 'login']);
+Route::get('/login', [AuthController::class, 'login'])->name('login');
 Route::post('/login', [AuthController::class, 'authenticate']);
 Route::post('/logout', [AuthController::class, 'logout']);
 Route::get('/register', [AuthController::class, 'registerview']);
@@ -18,12 +19,15 @@ Route::post('/register', [AuthController::class, 'register']);
 
 Route::get('/dashboard', function () {
     return view('pages.dashboard');
-})->name('dashboard')->middleware('auth');
+// })->name('dashboard')->middleware('auth');
+})->middleware('role:Admin,User');
 
 
 
 
-Route::get('/resident', [ResidentController::class, 'index']);
+Route::resource('resident', ResidentController::class)
+     ->middleware('role:Admin');
+// Route::get('/resident', [ResidentController::class, 'index'])->middleware('role:Admin');
 Route::get('/resident/create', [ResidentController::class, 'create']);
 Route::post('/resident', [ResidentController::class, 'store']);
 Route::get('/resident/{id}/edit', [ResidentController::class, 'edit']);
