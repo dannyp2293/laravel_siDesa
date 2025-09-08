@@ -15,7 +15,7 @@ class RoleMiddleware
         $roleName = Role::FIND(Auth::user()->role_id)->name;
         if(!Auth::check() || !in_array($roleName, $roles)){
 
-    return abort(403, 'Unauthorized');
+    return back ();
         }
 
         return $next($request);

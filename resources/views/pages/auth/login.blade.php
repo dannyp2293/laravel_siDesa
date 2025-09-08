@@ -43,26 +43,7 @@
     <div class="text-center">
         <h1 class="h4 text-gray-900 mb-4">Welcome Back!</h1>
     </div>
-    <form class="user" action="/login" method="POST">
-        @csrf
-        @method('POST')
-        <div class="form-group">
-            <input type="email" class="form-control form-control-user"
-                id="inputEmail"  name="email" aria-describedby="emailHelp"
-                placeholder="Enter Email Address...">
-        </div>
-        <div class="form-group">
-            <input type="password" name="password" class="form-control form-control-user"
-                id="inputPassword" placeholder="Password">
-
-
-        </div>
-        <button type="submit" class="btn btn-primary btn-user btn-block">
-            Login
-        </button>
-    <hr>
-    </form>
- {{-- <form class="user" action="{{ route('login.authenticate') }}" method="POST">
+ <form class="user" action="{{ route('login.authenticate') }}" method="POST">
     @csrf
     <div class="form-group">
         <input type="email" class="form-control form-control-user"
@@ -75,7 +56,7 @@
     <button type="submit" class="btn btn-primary btn-user btn-block">
         Login
     </button>
-</form> --}}
+</form>
 
 
     <div class="text-center">

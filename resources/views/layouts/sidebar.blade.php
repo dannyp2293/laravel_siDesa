@@ -1,4 +1,29 @@
-      <!-- Sidebar -->
+    @php
+        $menus = [
+            1 =>[
+                (object)[
+                    'title' => 'Dashboard',
+                    'path' => 'dashboard',
+                    'icon' => 'fas fa-fw fa-tachometer-alt'
+],
+                (object)[
+                    'title' => 'Peduduk',
+                    'path' => 'penduduk',
+                    'icon' => 'fas fa-fw fa-table'
+                ],
+],
+        2 =>[
+                (object)[
+                    'title' => 'Dashboard',
+                    'path' => 'dashboard',
+                    'icon' => 'fas fa-fw fa-tachometer-alt'
+],
+
+],
+];
+    @endphp
+
+     <!-- Sidebar -->
         <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
             <!-- Sidebar - Brand -->
@@ -13,27 +38,31 @@
             <hr class="sidebar-divider my-0">
 
             <!-- Nav Item - Dashboard -->
-            <li class="nav-item {{ request()->is('dashboard')? 'active' : '' }}">
+            {{-- <li class="nav-item {{ request()->is('dashboard')? 'active' : '' }}">
                 <a class="nav-link" href="/dashboard">
                     <i class="fas fa-fw fa-tachometer-alt"></i>
                     <span>Dashboard</span></a>
-            </li>
+            </li> --}}
 
             <!-- Divider -->
-            <hr class="sidebar-divider">
+            {{-- <hr class="sidebar-divider">
 
             <!-- Heading -->
             <div class="sidebar-heading">
                 Mangemen Data
-            </div>
+            </div> --}}
 
             <!-- Nav Item - Tables -->
-
-            <li class="nav-item {{ request()->is('resident*')? 'active' : '' }}">
-                <a class="nav-link" href="/resident">
-                    <i class="fas fa-fw fa-table"></i>
-                    <span>Penduduk</span></a>
+            @foreach ( $menus[auth()->user()->role_id] as $menu )
+               <li class="nav-item {{ request()->is('$menu->path .*')? 'active' : '' }}">
+                <a class="nav-link" href="/{{ $menu->path }}">
+                    <i class="{{ $menu->icon }}"></i>
+                    <span>{{ $menu->title }}</span></a>
             </li>
+
+            @endforeach
+
+
 
             <!-- Divider -->
             <hr class="sidebar-divider d-none d-md-block">
