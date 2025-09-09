@@ -62,3 +62,5 @@ Route::put('/resident/{id}', [ResidentController::class, 'update'])->middleware(
 Route::delete('/resident/{id}', [ResidentController::class, 'destroy'])->middleware('role:Admin');
 
 
+
+
