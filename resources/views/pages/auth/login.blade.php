@@ -19,6 +19,7 @@
 
     <!-- Custom styles for this template-->
     <link href="{{ asset('template/css/sb-admin-2.min.css') }}" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
 </head>
 
@@ -26,6 +27,26 @@
     {{-- @if($errors->any())
     dd($errors-all())
     @endif --}}
+    @if ($errors->any())
+    <script>
+        Swal.fire({
+        title: "Terjadi kesalahan",
+        text: "@foreach ( $errors->all () as  $error)  {{$error}}{{$loop->last ?'.' : ','}}@endforeach",
+        icon: "error"
+        });
+    </script>
+    {{-- @else
+    @error('email')
+         <script>
+        Swal.fire({
+        title: "Terjadi kesalahan",
+        text: "{{ $message }}",
+        icon: "error"
+});
+    </script>
+    @enderror --}}
+    @endif
+
     <div class="container">
 
         <!-- Outer Row -->
@@ -47,11 +68,11 @@
     @csrf
     <div class="form-group">
         <input type="email" class="form-control form-control-user"
-            name="email" placeholder="Enter Email Address..." required>
+            name="email" placeholder="Enter Email Address..." >
     </div>
     <div class="form-group">
         <input type="password" name="password" class="form-control form-control-user"
-            placeholder="Password" required>
+            placeholder="Password" >
     </div>
     <button type="submit" class="btn btn-primary btn-user btn-block">
         Login

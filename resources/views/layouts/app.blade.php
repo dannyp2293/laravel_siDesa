@@ -74,8 +74,10 @@
     <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
         aria-hidden="true">
         <div class="modal-dialog" role="document">
-            <form action="/logout" method="post">
-                @csrf
+            {{-- <form action="/logout">
+                @csrf --}}
+                  <form id="logout-form" action="/logout" method="POST">
+        @csrf
                 @method('POST')
             <div class="modal-content">
                 <div class="modal-header">
@@ -87,7 +89,7 @@
                  <div class="modal-body">apakah anda yakin akan keluar dari aplikasi.</div>
                 <div class="modal-footer">
                     <button type="button"  class="btn btn-secondary" type="button" data-dismiss="modal">Kembali</button>
-                    <button type="submit" class="btn btn-primary" >Logout</a>
+                    <button type="submit" class="btn btn-primary" >Logout</button>
                 </div>
             </div>
             </form>
@@ -110,7 +112,7 @@
     <!-- Page level custom scripts -->
     <script src="{{ asset('template/js/demo/chart-area-demo.js') }}"></script>
     <script src="{{ asset('js/demo/chart-pie-demo.js') }}"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js" integrity="sha384-ndDqU0Gzau9qJ1lfW4pNLlhNTkCfHzAVBReH9diLvGRem5+R9g2FzA8ZGN954O5Q" crossorigin="anonymous"></script>
+{{-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js" integrity="sha384-ndDqU0Gzau9qJ1lfW4pNLlhNTkCfHzAVBReH9diLvGRem5+R9g2FzA8ZGN954O5Q" crossorigin="anonymous"></script> --}}
 </body>
 
 </html>

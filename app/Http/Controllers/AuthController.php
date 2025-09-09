@@ -25,14 +25,19 @@ class AuthController extends Controller
         $credentials = $request->validate([
             'email' => ['required', 'email'],
             'password' => ['required'],
-        ]);
+        ],[ 'email.required' => 'Email harus diisi',
+            'email.email' => 'Email Tidak Valid',
+            'password.required' => 'Password harus diisi',
+    ]);
 
 
         if (Auth::attempt($credentials)) {
+
             $request->session()->regenerate();
             $userStatus = Auth::user()->status;
 
              if ($userStatus =='submitted') {
+                  $this->_logout($request);
                 return back()->withErrors([
                     'email' => 'Akun anda masih menunggu persetujuan admin.'
                 ]);
@@ -76,6 +81,14 @@ $validated = $request->validate([
     return redirect('/')->with('Berhasil, mendaftarkan akun, menunggu persetujuan admin');
     }
 
+    public function _logout(Request $request)
+    {
+        Auth::logout();
+
+    $request->session()->invalidate();
+
+    $request->session()->regenerateToken();
+    }
 
     public function logout(Request $request)
 {
@@ -83,13 +96,9 @@ $validated = $request->validate([
      if (!Auth::check()){  //ini kalau belom login  akan diarahkan ke dalam halaman login
                 return redirect('/');
             }
-    Auth::logout();
+            $this->_logout($request);
+            return redirect('/');
 
-    $request->session()->invalidate();
-
-    $request->session()->regenerateToken();
-
-    return redirect('/');
 
 }
 }
