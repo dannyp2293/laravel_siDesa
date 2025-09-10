@@ -62,11 +62,10 @@
         {{-- <a href="{{ url('/resident/' . $item->id . '/edit') }}" class="btn btn-sm btn-warning">Edit</a> --}}
     </a>
 
-    <button type="submit" class="btn btn-sm btn-danger" data-bs-toggle="modal" data-bs-target="#confirmationDelete{{ $item->id }}">
-        <i class="fas fa-eraser"></i>
+    <button type="button" class="btn btn-sm btn-danger" data-bs-toggle="modal" data-bs-target="#confirmationDelete{{ $item->id }}">
+    <i class="fas fa-eraser"></i>
+</button>
 
-
-                </a>
             </div>
                                         </td>
                                     </tr>
