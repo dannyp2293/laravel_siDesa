@@ -35,16 +35,6 @@
         icon: "error"
         });
     </script>
-    {{-- @else
-    @error('email')
-         <script>
-        Swal.fire({
-        title: "Terjadi kesalahan",
-        text: "{{ $message }}",
-        icon: "error"
-});
-    </script>
-    @enderror --}}
     @endif
 
     <div class="container">
