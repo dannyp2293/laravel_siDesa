@@ -35,17 +35,17 @@
         icon: "error"
         });
     </script>
-    {{-- @else
-    @error('email')
-         <script>
-        Swal.fire({
-        title: "Terjadi kesalahan",
-        text: "{{ $message }}",
-        icon: "error"
-});
-    </script>
-    @enderror --}}
     @endif
+
+    @if (session('error'))
+<script>
+    Swal.fire({
+        icon: "error",
+        title: "Terjadi Kesalahan",
+        text: "{{ session('error') }}",
+    });
+</script>
+@endif
 
     <div class="container">
 

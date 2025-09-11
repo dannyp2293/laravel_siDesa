@@ -42,11 +42,18 @@ class AuthController extends Controller
                     'email' => 'Akun anda masih menunggu persetujuan admin.'
                 ]);
 
-             } else if ($userStatus == 'rejected') {
-                return back()->withErrors([
-                    'email' => 'Akun anda telah ditolak admin.'
-                ]);
-            }
+             }
+            //  else if ($userStatus == 'rejected') {
+            //     return back()->withErrors([
+            //         'email' => 'Akun anda telah ditolak admin.'
+            //     ]);
+            // }
+
+            else if ($userStatus == 'rejected') {
+            $this->_logout($request);
+            return back()->with('error', 'Akun anda telah ditolak admin.');
+        }
+
 
             return redirect()->intended('dashboard');
         }

@@ -1,7 +1,7 @@
 <!-- Modal -->
 <div class="modal fade" id="confirmationReject{{$item->id}}" tabindex="-1" aria-labelledby="confirmationRejectLabel" aria-hidden="true">
   <div class="modal-dialog">
-    <form action="{{ route('account-request.Reject', $item->id) }}" method="post">
+    <form action="{{ route('account-request.approval', $item->id) }}" method="post">
     @csrf
 @method('POST')
     <div class="modal-content">
@@ -12,6 +12,7 @@
         </button>
       </div>
       <div class="modal-body">
+          <input type="hidden" name="for" value="reject">
         <span>Apakah Anda Yakin Menolak akun ini</span>
       </div>
       <div class="modal-footer">

@@ -6,6 +6,15 @@
         <h1 class="h3 mb-0 text-gray-800">Permintaan Akun</h1>
         <
     </div>
+        @if (session('success'))
+    <script>
+        Swal.fire({
+        title: "Berhasil",
+        text: "{{ session()->get('success') }}",
+        icon: "success"
+        });
+    </script>
+    @endif
 
     {{-- Table --}}
     <div class="row">
@@ -51,7 +60,7 @@
                                                     data-bs-target="#confirmationApprove{{ $item->id }}">
                                                     Setuju
                                             </button>
-                                            
+
                                             </div>
                                         </td>
                                     </tr>

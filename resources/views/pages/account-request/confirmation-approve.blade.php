@@ -1,7 +1,7 @@
 <!-- Modal -->
 <div class="modal fade" id="confirmationApprove{{$item->id}}" tabindex="-1" aria-labelledby="confirmationApproveLabel" aria-hidden="true">
   <div class="modal-dialog">
-    <form action="{{ route('account-request.approve', $item->id) }}" method="post">
+    <form action="{{ route('account-request.approval', $item->id) }}" method="post">
     @csrf
 @method('POST')
     <div class="modal-content">
@@ -11,7 +11,9 @@
             <i class="fas fa-times"></i>
         </button>
       </div>
+
       <div class="modal-body">
+        <input type="hidden" name="for" value="approve">
         <span>Apakah Anda Yakin Mensetujui Akun ini</span>
       </div>
       <div class="modal-footer">
