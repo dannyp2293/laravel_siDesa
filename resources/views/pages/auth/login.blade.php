@@ -37,6 +37,16 @@
     </script>
     @endif
 
+    @if (session('error'))
+<script>
+    Swal.fire({
+        icon: "error",
+        title: "Terjadi Kesalahan",
+        text: "{{ session('error') }}",
+    });
+</script>
+@endif
+
     <div class="container">
 
         <!-- Outer Row -->

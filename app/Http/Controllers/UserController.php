@@ -18,7 +18,7 @@ class UserController extends Controller
     {
         $for =$request->input('for');
         $user = User::findOrFail($userId);
-        $user->status = $request->input('for') =='approve' ? 'approved' :'rejected';
+        $user->status = $for =='approve' ? 'approved' :'rejected';
         $user->save();
 
         return back()->with ('success', $for == 'approve' ? 'Berhasil menyetujui akun' : 'Berhasil menolak akun') ;
