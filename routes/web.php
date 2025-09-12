@@ -53,5 +53,5 @@ Route::get('/account-request', [UserController::class, 'account_request_view'])
 //     ->middleware('role:Admin')
 //     ->name('account-request.Reject');
 
-Route::post('/account-request/approval/{id}', [Usercontroller::class, 'account_approval'])
+Route::post('/account-request/approval/{id}', [UserController::class, 'account_approval'])
 ->name('account-request.approval');

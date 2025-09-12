@@ -43,11 +43,6 @@ class AuthController extends Controller
                 ]);
 
              }
-            //  else if ($userStatus == 'rejected') {
-            //     return back()->withErrors([
-            //         'email' => 'Akun anda telah ditolak admin.'
-            //     ]);
-            // }
 
             else if ($userStatus == 'rejected') {
             $this->_logout($request);
@@ -85,7 +80,7 @@ $validated = $request->validate([
     $user->role_id=2;
     $user->saveOrFail();
 
-    return redirect('/')->with('Berhasil, mendaftarkan akun, menunggu persetujuan admin');
+    return redirect('/')->with('success','Berhasil, mendaftarkan akun, menunggu persetujuan admin');
     }
 
     public function _logout(Request $request)

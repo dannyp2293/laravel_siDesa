@@ -12,7 +12,7 @@ class RoleMiddleware
     public function handle(Request $request, Closure $next, ...$roles)
     {
 
-        $roleName = Role::FIND(Auth::user()->role_id)->name;
+        $roleName = Role::find(Auth::user()->role_id)->name;
         if(!Auth::check() || !in_array($roleName, $roles)){
 
     return back ();
