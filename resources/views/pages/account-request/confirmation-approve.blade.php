@@ -3,7 +3,7 @@
   <div class="modal-dialog">
     <form action="{{ route('account-request.approval', $item->id) }}" method="post">
     @csrf
-@method('POST')
+{{-- @method('POST') --}}
     <div class="modal-content">
       <div class="modal-header">
         <h4 class="modal-title fs-5" id="confirmationApproveLabel">Konfirmasi Setujui </h4>

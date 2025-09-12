@@ -46,35 +46,39 @@
     <tbody>
         @foreach ($users as $item)
             <tr>
-                <td>{{ $loop->iteration }}</td>
-                <td>{{ $item->name }}</td>
-                <td>{{ $item->email }}</td>
-                <td>
-                    @if ($item->status == 'approved')
-                    <span class="badge badge-success">Aktif</span>
-                   @else
-                <span class="badge badge-danger">Tidak Aktif</span>
+<td>{{ $loop->iteration }}</td>
+<td>{{ $item->name }}</td>
+<td>{{ $item->email }}</td>
+<td>
+    @if ($item->status == 'approved')
+    <span class="badge badge-success">Aktif</span>
+    @else
+<span class="badge badge-danger">Tidak Aktif</span>
 
-                    @endif
-                </td>
-                <td>
-                    <div class="d-flex" style="gap: 10px">
-                        </a>
-
-                        <button type="submit" class="btn btn-sm btn-danger" data-bs-toggle="modal"
+    @endif
+</td>
+<td>
+    <div class="d-flex" style="gap: 10px">
+      @if ($item->status == 'approved')
+      <button type="button" class="btn btn-sm btn-outline-danger" data-bs-toggle="modal"
                             data-bs-target="#confirmationReject{{ $item->id }}">
-                            Tolak
+                            Non-Aktifkan Akun
                     </button>
-                        <button type="submit" class="btn btn-sm btn-success" data-bs-toggle="modal"
+    @else
+      <button type="button" class="btn btn-sm btn-outline-success" data-bs-toggle="modal"
                             data-bs-target="#confirmationApprove{{ $item->id }}">
-                            Setuju
+                            Aktifkan Akun
                     </button>
+     @endif
+
+
+
 
                     </div>
                 </td>
             </tr>
-                                    @include('pages.account-request.confirmation-approve')
-                                     @include('pages.account-request.confirmation-reject')
+                                    @include('pages.account-list.confirmation-approve')
+                                     @include('pages.account-list.confirmation-reject')
                                 @endforeach
 
                             </tbody>

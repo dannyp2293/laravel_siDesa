@@ -13,12 +13,12 @@
       </div>
 
       <div class="modal-body">
-        <input type="hidden" name="for" value="approve">
-        <span>Apakah Anda Yakin Mensetujui Akun ini</span>
+        <input type="hidden" name="for" value="activate">
+        <span>Apakah Anda Yakin Akan Mengaktifkan Akun ini</span>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tutup</button>
-        <button type="submit" class="btn btn-success">Ya</button>
+        <button type="submit" class="btn btn-success">Ya, Aktifkann!</button>
       </div>
     </div>
     </form>
