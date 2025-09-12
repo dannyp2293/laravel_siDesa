@@ -11,6 +11,12 @@ return [
             'path'  => 'resident',
             'icon'  => 'fas fa-fw fa-table'
         ],
+         [
+            'title' => 'Daftar Akun',
+            'path'  => 'account-list',
+            'icon'  => 'fas fa-fw fa-user'
+        ],
+
         [
             'title' => 'Permintaan Akun',
             'path'  => 'account-request',

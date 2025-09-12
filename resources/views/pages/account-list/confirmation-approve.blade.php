@@ -18,7 +18,7 @@
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tutup</button>
-        <button type="submit" class="btn btn-success">Ya Setujui</button>
+        <button type="submit" class="btn btn-success">Ya</button>
       </div>
     </div>
     </form>

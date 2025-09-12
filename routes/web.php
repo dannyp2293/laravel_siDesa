@@ -52,6 +52,12 @@ Route::get('/account-request', [UserController::class, 'account_request_view'])
 // Route::post('/account-request/reject/{id}', [UserController::class, 'Reject'])
 //     ->middleware('role:Admin')
 //     ->name('account-request.Reject');
+Route::get('account-list', [UserController::class, 'account_list_view'])->middleware('role:Admin');
+// Route::get('account-list', [UserController::class, 'account_list_view'])
+//     ->middleware('role:Admin')
+//     ->name('account-list.index');
+
 
 Route::post('/account-request/approval/{id}', [UserController::class, 'account_approval'])
+ ->middleware('role:Admin')
 ->name('account-request.approval');
