@@ -63,3 +63,38 @@ Route::get('account-list', [UserController::class, 'account_list_view'])->middle
 Route::post('/account-request/approval/{id}', [UserController::class, 'account_approval'])
  ->middleware('role:Admin')
 ->name('account-request.approval');
+
+// Route::post('/profile/{id}', [UserController::class, 'update_profile'])
+//  ->middleware('role:Admin')
+// ->name('update_profile');
+// Route::put('/profile/{id}', [UserController::class, 'update_profile'])
+//     ->middleware('role:Admin,User')
+//     ->name('profile.update');
+// Route::put('/profile/{id}', [UserController::class, 'update_profile'])
+//     ->middleware('role:Admin,User')
+//     ->name('profile.update');
+// Profile
+// Route::get('/profile', [UserController::class, 'profile_view'])
+//     ->middleware('role:Admin,User')
+//     ->name('profile.view');
+
+// Route::put('/profile/{id}', [UserController::class, 'update_profile'])
+//     ->middleware('role:Admin,User')
+//     ->name('profile.update');
+
+// Route::get('/change-password', [UserController::class, 'change_password_view'])
+//     ->middleware('role:Admin,User')
+//     ->name('profile.change-password');
+// routes/web.php
+Route::get('/profile', [UserController::class, 'profile_view'])
+    ->middleware('role:Admin,User')
+    ->name('profile.view');
+
+Route::put('/profile/{id}', [UserController::class, 'update_profile'])
+    ->middleware('role:Admin,User')
+    ->name('profile.update');
+
+
+
+Route::get('/profile', [UserController::class, 'profile_view'])->middleware('role:Admin,User');
+Route::get('/change-password', [UserController::class, 'change_password_view'])->middleware('role:Admin,User');
