@@ -1,0 +1,57 @@
+@extends('layouts.app')
+
+@section('content')
+    <!-- Page Heading -->
+    <div class="d-sm-flex align-items-center justify-content-between mb-4">
+        <h1 class="h3 mb-0 text-gray-800">Ubah password</h1>
+    </div>
+    {{-- @if ($errors->any())
+    @dd($errors->all())
+    @endif --}}
+    <div class="row">
+        <div class="col">
+            <form action="/change-password/{{auth()->user()->id}}" method="post">
+                @csrf
+                @method('PUT')
+<div class="card">
+<div class="card-body">
+
+    <div class="from-group mb-3">
+        <label for="old_password">Password Lama</label>
+        <input type="password" name="old_password" id="old_password"
+            class="form-control @error('old_password') is-invalid @enderror">
+        @error('old_password')
+            <span class="invalid-feedback">
+                {{ $message }}
+            </span>
+        @enderror
+    </div>
+
+    <div class="from-group mb-3">
+        <label for="new_password">Password Lama</label>
+        <input type="password" name="new_password" id="new_password"
+            class="form-control @error('new_password') is-invalid @enderror">
+        @error('new_password')
+            <span class="invalid-feedback">
+                {{ $message }}
+            </span>
+        @enderror
+    </div>
+ 
+</div>
+
+<div class="card-footer">
+    <div class="d-flex justify-content-end" style="gap:10px;">
+        <a href="/resident" class="btn btn-outline-secondary">
+            Kembali
+        </a>
+        <button type="submit" class="btn btn-primary">
+            Simpan Perubahan
+        </button>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+@endsection

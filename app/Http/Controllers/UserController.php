@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\validation\Rule;
 
 class UserController extends Controller
@@ -82,5 +83,27 @@ class UserController extends Controller
     public function change_password_view()
     {
        return view('pages.profile.change-password') ;
+    }
+    public function change_password(Request $request, $userId){
+        $request->validate([
+            'old_password' => 'required|min:8',
+             'new_password' => 'required|min:8',
+        ]);
+        $user =User::findOrFail($userId);
+
+        $currentPasswordIsValid = Hash::check($request->input('old_password'), $user->password);
+
+        if($currentPasswordIsValid){
+            $user->password = $request->input('new_password');
+        $user->save();
+
+        return back()->with ('success', 'Berhasil mengubah data');
+        }
+        return back()->with('error', 'gagal mengubah password, password lama tidak valid');
+
+        
+        
+
+        
     }
 }
