@@ -8,6 +8,26 @@
     {{-- @if ($errors->any())
     @dd($errors->all())
     @endif --}}
+@if (session('success'))
+    <script>
+        Swal.fire({
+            title: "Berhasil",
+            text: "{{ session('success') }}",
+            icon: "success"
+        });
+    </script>
+@endif
+
+@if (session('error'))
+    <script>
+        Swal.fire({
+            title: "Gagal",
+            text: "{{ session('error') }}",
+            icon: "error"
+        });
+    </script>
+@endif
+
     <div class="row">
         <div class="col">
             <form action="/change-password/{{auth()->user()->id}}" method="post">
@@ -28,7 +48,7 @@
     </div>
 
     <div class="from-group mb-3">
-        <label for="new_password">Password Lama</label>
+        <label for="new_password">Password Baru</label>
         <input type="password" name="new_password" id="new_password"
             class="form-control @error('new_password') is-invalid @enderror">
         @error('new_password')
@@ -37,7 +57,7 @@
             </span>
         @enderror
     </div>
- 
+
 </div>
 
 <div class="card-footer">

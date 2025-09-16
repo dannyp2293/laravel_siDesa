@@ -43,7 +43,7 @@
         <a href="/resident" class="btn btn-outline-secondary">
             Kembali
         </a>
-        <button type="submit" class="btn btn-warning">
+        <button type="submit" class="btn btn-primary">
             Simpan Perubahan
         </button>
                         </div>

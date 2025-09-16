@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
-use Illuminate\validation\Rule;
+use Illuminate\Validation\Rule;
 
 class UserController extends Controller
 {
@@ -91,19 +91,31 @@ class UserController extends Controller
         ]);
         $user =User::findOrFail($userId);
 
-        $currentPasswordIsValid = Hash::check($request->input('old_password'), $user->password);
+        // $currentPasswordIsValid = Hash::check($request->input('old_password'), $user->password);
 
-        if($currentPasswordIsValid){
-            $user->password = $request->input('new_password');
-        $user->save();
-
-        return back()->with ('success', 'Berhasil mengubah data');
-        }
-        return back()->with('error', 'gagal mengubah password, password lama tidak valid');
-
-        
-        
-
-        
+        // Cek password lama
+    if (!Hash::check($request->old_password, $user->password)) {
+        return back()->with('error', 'Gagal mengubah password, password lama tidak valid');
     }
+
+    // Simpan password baru (pakai Hash::make)
+    $user->password = Hash::make($request->new_password);
+    $user->save();
+
+    return back()->with('success', 'Password berhasil diubah!');
+}
+
+    //     if($currentPasswordIsValid){
+    //         $user->password = $request->input('new_password');
+    //     $user->save();
+
+    //     return back()->with ('success', 'Berhasil mengubah data');
+    //     }
+    //     return back()->with('error', 'gagal mengubah password, password lama tidak valid');
+
+
+
+
+
+    // }
 }
