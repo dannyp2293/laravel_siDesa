@@ -18,6 +18,7 @@
         <div class="form-group mt-3">
             <label for="resident_id">Pilih Penduduk</label>
             <select name="resident_id" id="resident_id" class="form-control">
+            <option value="">Tidak ada</option>
                 @foreach ($residents as $item )
                 <option value="{{ $item->id }}">{{$item->name}}</option>
 

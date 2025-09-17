@@ -23,7 +23,7 @@ class UserController extends Controller
 {
     $request->validate([
         'for' => ['required', Rule::in(['approve', 'reject', 'deactive'])],
-        'user_id' => ['nullable', 'exists:users,id']
+        'resident_id' => ['nullable', 'exists:users,id']
     ]);
 
     $for = $request->input('for');
@@ -32,6 +32,14 @@ class UserController extends Controller
     if ($for == 'approve') {
         $user->status = 'approved';
         $user->save();
+
+        $residentId = $request->input('resident_id');
+
+        if($request->has('resident_id') &&  isset ($residentId)){
+            Resident::where('id',$residentId)
+            ->update(['user_id'=> $user->id
+            ,]);
+        }
 
         return redirect()->route('account-request.index')
             ->with('success', 'Berhasil menyetujui akun');
