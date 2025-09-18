@@ -12,8 +12,8 @@ class UserController extends Controller
 {
     public function account_request_view()
     {
-        $users = User::where('status', 'submitted')->get();
-        $residents = Resident::where('user_Id', null)->get();
+        $users = User::where('status', 'submitted')->paginate(1);
+        $residents = Resident::where('user_Id', null)->paginate(1);
         return view('pages.account-request.index',['users' => $users,
         'residents' => $residents,
     ]);
@@ -23,7 +23,7 @@ class UserController extends Controller
 {
     $request->validate([
         'for' => ['required', Rule::in(['approve', 'reject', 'deactive'])],
-        'resident_id' => ['nullable', 'exists:users,id']
+        'resident_id' => ['nullable', 'exists:residents,id']
     ]);
 
     $for = $request->input('for');
@@ -69,7 +69,7 @@ class UserController extends Controller
 
     public function account_list_view()
     {
-        $users = User::where('role_id', 2)->where('status', '!=', 'submitted')->get();
+        $users = User::where('role_id', 2)->where('status', '!=', 'submitted')->paginate(1);
         return view ('pages.account-list.index',['users' => $users,
     ]);
 
