@@ -29,5 +29,10 @@ return [
             'path'  => 'dashboard',
             'icon'  => 'fas fa-fw fa-tachometer-alt'
         ],
+         [
+            'title' => 'Pengaduan',
+            'path'  => 'complaint',
+            'icon'  => 'fas fa-fw fa-tachometer-alt'
+        ],
     ],
 ];
