@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\ComplaintController;
 use App\Http\Controllers\ResidentController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
@@ -35,6 +36,10 @@ Route::get('/dashboard', function () {
 Route::middleware('role:Admin')->group(function () {
     Route::resource('resident', ResidentController::class);
 });
+Route::middleware('role:User')->group(function () {
+    Route::resource('complaint', ComplaintController::class);
+});
+
 
 /*
 |--------------------------------------------------------------------------
@@ -56,28 +61,6 @@ Route::post('/account-request/approval/{id}', [UserController::class, 'account_a
  ->middleware('role:Admin')
 ->name('account-request.approval');
 
-// Route::post('/profile/{id}', [UserController::class, 'update_profile'])
-//  ->middleware('role:Admin')
-// ->name('update_profile');
-// Route::put('/profile/{id}', [UserController::class, 'update_profile'])
-//     ->middleware('role:Admin,User')
-//     ->name('profile.update');
-// Route::put('/profile/{id}', [UserController::class, 'update_profile'])
-//     ->middleware('role:Admin,User')
-//     ->name('profile.update');
-// Profile
-// Route::get('/profile', [UserController::class, 'profile_view'])
-//     ->middleware('role:Admin,User')
-//     ->name('profile.view');
-
-// Route::put('/profile/{id}', [UserController::class, 'update_profile'])
-//     ->middleware('role:Admin,User')
-//     ->name('profile.update');
-
-// Route::get('/change-password', [UserController::class, 'change_password_view'])
-//     ->middleware('role:Admin,User')
-//     ->name('profile.change-password');
-// routes/web.php
 Route::get('/profile', [UserController::class, 'profile_view'])
     ->middleware('role:Admin,User')
     ->name('profile.view');
@@ -92,8 +75,10 @@ Route::get('/profile', [UserController::class, 'profile_view'])->middleware('rol
 
 Route::get('/change-password', [UserController::class, 'change_password_view'])->middleware('role:Admin,User');
 
-// Route::get('/change-password/{id}', [UserController::class, 'change_password'])->middleware('role:Admin,User');
 
 Route::put('/change-password/{id}', [UserController::class, 'change_password'])
     ->middleware('role:Admin,User')
     ->name('password.update');
+
+
+
