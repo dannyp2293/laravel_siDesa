@@ -28,6 +28,15 @@ Route::get('/dashboard', function () {
     return view('pages.dashboard');
 })->middleware('role:Admin,User')->name('dashboard');
 
+Route::middleware('role:Admin,User')->group(function () {
+    Route::resource('complaint', ComplaintController::class);
+});
+
+Route::post('/complaint/update-status/{id}', [ComplaintController::class, 'update_status'])
+    ->name('complaint.update_status')
+    ->middleware('role:Admin');
+
+
 /*
 |--------------------------------------------------------------------------
 | Resident (hanya Admin yang boleh akses)
@@ -35,9 +44,6 @@ Route::get('/dashboard', function () {
 */
 Route::middleware('role:Admin')->group(function () {
     Route::resource('resident', ResidentController::class);
-});
-Route::middleware('role:User')->group(function () {
-    Route::resource('complaint', ComplaintController::class);
 });
 
 

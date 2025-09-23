@@ -22,6 +22,11 @@ return [
             'path'  => 'account-request',
             'icon'  => 'fas fa-fw fa-user'
         ],
+          [
+            'title' => 'Aduan warga',
+            'path'  => 'complaint',
+            'icon'  => 'fas fa-fw fa-scroll'
+        ],
     ],
     2 => [
         [
@@ -34,5 +39,6 @@ return [
             'path'  => 'complaint',
             'icon'  => 'fas fa-fw fa-tachometer-alt'
         ],
+        
     ],
 ];
