@@ -10,7 +10,7 @@ class Complaint extends Model
 
     public function getStatusLabelAttribute() //status label
     {
-       return match($this->ststus){
+       return match($this->status){
         'new' => 'Baru',
         'processing' => 'Sedang Diproses',
         'completed' => 'Selesai',
@@ -20,6 +20,20 @@ class Complaint extends Model
     }
     public function GetReportDateLabelAttribute() //Report_date_label
     {
-        return \Carbon\Carbon::parse($this->report_date)->format('d M Y H:1:s');
+        return \Carbon\Carbon::parse($this->report_date)->format('d M Y H:i:s');
+    }
+    public function getStatusColorAttribute() //status_color
+    {
+        return match($this->status){
+        'new' => 'primary',
+        'processing' => 'warning',
+        'completed' => 'success',
+        default => 'secondary',
+       };
+
+    }
+    public function resident()
+    {
+        return $this->belongsTo(Resident::class);
     }
 }

@@ -90,9 +90,11 @@ class ComplaintController extends Controller
         }
 
         $complaint = Complaint::findOrFail($id);
-        if($compliant->status != 'new'){
-            return redirect('/complaint')->with('error', "Gagal mengubah aduan, Status adiuan anda saat ini adalah $complaint->status ");
+        if($complaint->status != 'new'){
+            return redirect('/complaint')->with('error', "Gagal mengubah aduan, Status adiuan anda saat ini adalah $complaint->status_label ");
         }
+
+
 
         $complaint->resident_id = $resident->id;
         $complaint->title = $request->input('title');
@@ -120,7 +122,11 @@ class ComplaintController extends Controller
             return redirect('/complaint')->with('error', 'Akun anda belum terhubung dengan data penduduk manapun');
         }
 
-        $complaint = Complaint::findOrFail($id);
+         $complaint = Complaint::findOrFail($id);
+
+        if($complaint->status != 'new'){
+            return redirect('/complaint')->with('error', "Gagal mengubah aduan, Status adiuan anda saat ini adalah $complaint->status_label ");
+        }
         $complaint->delete();
 
         return redirect('/complaint')->with('success', 'Berhasil menghapus aduan');
