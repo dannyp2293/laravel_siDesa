@@ -87,4 +87,22 @@ Route::put('/change-password/{id}', [UserController::class, 'change_password'])
     ->name('password.update');
 
 
+    //route Nofitication
+
+    Route::post('/notification/{id}/read',  function($id){
+        $notification = \Illuminate\Support\Facades\DB::table('notifications')->where('id',$id);
+        $notification->update([
+        'read_at' => \Illuminate\Support\Facades\DB::raw('CURRENT_TIMESTAMP'),
+        ]);
+
+        $dataArray = json_decode($notification->firstOrFail()->data, true);
+
+        if(isset($dataArray['complaint_id'])){
+            return redirect('/complaint');
+        }
+        return back();
+
+    })->middleware('role:Admin,User');
+
+
 
