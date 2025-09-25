@@ -58,14 +58,26 @@
                  <h6 class="dropdown-header">
                      Notifikasi
                  </h6>
-                 @foreach (auth()->user()->notifications as $notification )
-                 @if (is_null($notification->read_at))
+                 @foreach (auth()->user()->notifications as $notification)
+    <form id="formNotification-{{ $notification->id }}" action="/notification/{{ $notification->id }}/read" method="POST">
+        @csrf
+        @method('POST')
+        <div class="dropdown-item d-flex align-items-center"
+             style="background-color: rgba(115,194,251,{{ is_null($notification->read_at) ? '0.1' : '0.0' }}); cursor:pointer;"
+             onclick="document.getElementById('formNotification-{{ $notification->id }}').submit()">
 
-
-                 @endif
-
-
-                 @endforeach
+            <div class="mr-3">
+                <div class="icon-circle bg-primary">
+                    <i class="fas fa-file-alt text-white"></i>
+                </div>
+            </div>
+            <div>
+                <div class="small text-gray-500">{{ $notification->created_at->diffForHumans() }}</div>
+                <span class="font-weight-bold">{{ $notification->data['message'] }}</span>
+            </div>
+        </div>
+    </form>
+@endforeach
 
                  <a class="dropdown-item text-center small text-gray-500" >Lihat Semua Notifikasi</a>
              </div>
