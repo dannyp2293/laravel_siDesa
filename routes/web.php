@@ -6,7 +6,7 @@ use App\Http\Controllers\ResidentController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Notifications\DatabaseNotification;
-
+use App\Http\Controllers\NotificationController;
 /*
 |--------------------------------------------------------------------------
 | Auth Routes
@@ -105,6 +105,10 @@ Route::put('/change-password/{id}', [UserController::class, 'change_password'])
 
     // })->middleware('role:Admin,User');
 
+    Route::get('/notifications', function(){
+        return view('pages.notifications');
+    })->middleware('role:Admin,User')->name('notifications.index');
+
     Route::post('/notification/{id}/read', function($id){
     $notification = DatabaseNotification::findOrFail($id);
 
@@ -118,6 +122,10 @@ Route::put('/change-password/{id}', [UserController::class, 'change_password'])
 
     return back();
 })->middleware('role:Admin,User');
+
+
+Route::post('/notification/{id}/read', [NotificationController::class, 'markAsRead'])
+    ->name('notification.read');
 
 
 
