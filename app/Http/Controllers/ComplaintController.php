@@ -158,4 +158,9 @@ class ComplaintController extends Controller
 
         return redirect('/complaint')->with('success', "Berhasil Mengupdate Aduan");
     }
+    public function show($id)
+{
+    return redirect()->route('complaint.index');
+}
+
 }

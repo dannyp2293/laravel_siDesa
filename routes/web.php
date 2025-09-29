@@ -5,6 +5,7 @@ use App\Http\Controllers\ComplaintController;
 use App\Http\Controllers\ResidentController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Notifications\DatabaseNotification;
 
 /*
 |--------------------------------------------------------------------------
@@ -89,20 +90,34 @@ Route::put('/change-password/{id}', [UserController::class, 'change_password'])
 
     //route Nofitication
 
-    Route::post('/notification/{id}/read',  function($id){
-        $notification = \Illuminate\Support\Facades\DB::table('notifications')->where('id',$id);
-        $notification->update([
-        'read_at' => \Illuminate\Support\Facades\DB::raw('CURRENT_TIMESTAMP'),
-        ]);
+    // Route::post('/notification/{id}/read',  function($id){
+    //     $notification = \Illuminate\Support\Facades\DB::table('notifications')->where('id',$id);
+    //     $notification->update([
+    //     'read_at' => \Illuminate\Support\Facades\DB::raw('CURRENT_TIMESTAMP'),
+    //     ]);
 
-        $dataArray = json_decode($notification->firstOrFail()->data, true);
+    //     $dataArray = json_decode($notification->firstOrFail()->data, true);
 
-        if(isset($dataArray['complaint_id'])){
-            return redirect('/complaint');
-        }
-        return back();
+    //     if(isset($dataArray['complaint_id'])){
+    //         return redirect('/complaint');
+    //     }
+    //     return back();
 
-    })->middleware('role:Admin,User');
+    // })->middleware('role:Admin,User');
+
+    Route::post('/notification/{id}/read', function($id){
+    $notification = DatabaseNotification::findOrFail($id);
+
+    $notification->markAsRead();
+
+    $dataArray = $notification->data;
+
+    if(isset($dataArray['url'])){
+        return redirect($dataArray['url']); // ✅ langsung ke detail complaint
+    }
+
+    return back();
+})->middleware('role:Admin,User');
 
 
 
